@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Sandip Patil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f6f5f1;
+      --bg2: #ffffff;
+      --text: #191919;
+      --text-muted: #6a6a6a;
+      --accent: #b8935a;
+      --border: #e2dfd8;
+      --num-color: #ecdec8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,245,241,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo em { font-style: italic; color: var(--accent); }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-left: 32px;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+	
+		nav a.active {
+  color: var(--accent);
+  position: relative;
+}
+
+nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+}
+
+    /* HERO */
+    .hero {
+      padding: 100px 60px 80px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 4px 10px;
+      border-radius: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.6rem);
+      font-weight: 300;
+      line-height: 1.08;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-right {
+      padding-bottom: 8px;
+    }
+
+    .hero-intro {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+
+    .hero-intro strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-num em { font-style: italic; color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CAREER TIMELINE */
+    .section {
+      padding: 80px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--num-color);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+
+
+    /* AI SECTION */
+    .ai-section {
+      padding: 80px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ai-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .ai-subhead {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    
+	  .ai-intro {
+  width: 100%;
+  max-width: none;
+  margin-bottom: 52px;
+  padding-left: 0;
+}
+    
+
+    .ai-intro p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .ai-card {
+      background: var(--bg);
+      padding: 40px 40px;
+      transition: background 0.2s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+    }
+    .ai-card:hover { background: var(--bg2); }
+    .ai-card.visible { opacity: 1; transform: translateY(0); }
+
+    .ai-card-domain {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .ai-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .ai-card-desc {
+      font-size: 0.84rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .phil-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.2;
+      position: sticky;
+      top: 100px;
+    }
+    .phil-label em { font-style: italic; color: var(--accent); }
+
+    .phil-content { display: flex; flex-direction: column; gap: 32px; }
+
+    .phil-block {
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .phil-block.visible { opacity: 1; transform: translateX(0); }
+
+    .phil-block-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .phil-block p {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .phil-block p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* CONTACT STRIP */
+    .contact-strip {
+      padding: 80px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .contact-left h2 em { font-style: italic; color: var(--accent); }
+
+    .contact-left p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .contact-link {
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link::after {
+      content: '→';
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+    .contact-link:hover::after { transform: translateX(4px); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+    .footer-name em { font-style: italic; color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      header { padding: 0 24px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 48px;
+        gap: 40px;
+      }
+
+      .section { padding: 60px 24px; }
+
+      .timeline::before { left: 0; display: none; }
+      .tl-item { grid-template-columns: 1fr; gap: 12px; }
+      .tl-left { align-items: flex-start; }
+      .tl-left::after { display: none; }
+      .tl-right { padding-left: 0; }
+
+      .ai-grid { grid-template-columns: 1fr; }
+      .ai-intro { padding-left: 0; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+      .philosophy {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+        gap: 40px;
+      }
+      .phil-label { position: static; }
+
+      .contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 60px 24px;
+      }
+      .contact-links { align-items: flex-start; }
+
+      footer { flex-direction: column; gap: 12px; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="portfolio_1.html">Sandip Patil<em>.</em>Portfolio</a>
+  <nav>
+    <a href="portfolio_1.html">Work</a>
+    <a href="#" class="active">About</a>
+	<a href="contact.html">Contact</a> 
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Industrial &amp; Product Design</div>
+    <h1>Form, function,<br>and everything<br><em>in between.</em></h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-intro">
+      Great products earn their place in the world by doing two things simultaneously — they stop you with their form and hold you with their function. Aesthetics is not decoration applied at the end; it is the <strong>first signal a product sends about the intelligence inside it.</strong> The most enduring products in any category carry a visual coherence that reflects the rigour of the engineering beneath. Embedded intelligence — whether mechanical, electronic, or computational — is what separates a product that works from one that thinks. When form and intelligence are resolved together, the result is not just a good product — it is one that <strong>people trust before they even use it.</strong>
+    </p>
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-num">23<em>+</em></span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">80<em>+</em></span>
+        <span class="stat-label">Delivered Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10<em>+</em></span>
+        <span class="stat-label">Industry Sectors</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- AI -->
+<section class="ai-section">
+  <div class="ai-header">
+        <div>
+      <h2 class="section-title">Engineering with <em>AI.</em></h2>
+      <p class="ai-subhead">Not as a novelty. As a working practice.</p>
+    </div>
+  </div>
+  <div class="ai-intro">
+    <p>AI has not changed what good engineering requires — clarity of thought, rigour in method, and accountability for outcomes. What it has changed is the speed at which a single engineer can move through problems that once required specialist support or days of manual iteration. The approach is consistent: identify where the bottleneck is, bring the right AI capability to bear on that specific problem, and move forward. The tools vary. The discipline does not.</p>
+  </div>
+  <div class="ai-grid">
+
+    <div class="ai-card">
+      <div class="ai-card-domain">Graphics &amp; Visual Communication</div>
+      <h3 class="ai-card-title">From rough intent to finished visual</h3>
+      <p class="ai-card-desc">Concept sketches, product renders, presentation graphics, and marketing visuals — generated, iterated, and refined using AI image tools. What previously required a dedicated graphic designer or hours in Illustrator now happens in the same session as the engineering work, keeping visual communication in lockstep with technical progress.</p>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-card-domain">Thermal Analysis</div>
+      <h3 class="ai-card-title">Heat load calculations, reasoned through</h3>
+      <p class="ai-card-desc">For refrigeration system sizing and electrical cooker heating element selection, AI was used to set up the calculation framework, check assumptions, and validate outputs — compressing what would otherwise be multi-step manual analysis into a structured, auditable workflow. The engineer still owns the decisions. AI accelerates the path to them.</p>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-card-domain">Force &amp; Mechanism Analysis</div>
+      <h3 class="ai-card-title">Load paths and joint forces, fast</h3>
+      <p class="ai-card-desc">In the prosthetic hand project, force calculations across finger joints and load-bearing scenarios were set up and sense-checked using AI — alongside Creo Mechanism for kinematic validation. The combination shortened the analysis cycle and provided a second layer of verification before committing to full simulation runs.</p>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-card-domain">Embedded Programming</div>
+      <h3 class="ai-card-title">Arduino logic, written and debugged</h3>
+      <p class="ai-card-desc">For SPM motor control and agitator drive systems, AI was used to generate, review, and debug Arduino code — covering motor selection logic, speed-torque profiling, and control loop structure. Embedded behaviour validated faster, with fewer iteration cycles between the mechanical and electronics domains.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- NARRATIVE -->
+<section class="philosophy">
+  <div class="phil-label">
+    The career<br><em>in three acts.</em>
+  </div>
+  <div class="phil-content">
+
+    <div class="phil-block">
+      <div class="phil-block-label">Act I &nbsp;·&nbsp; Building the foundation</div>
+      <p>The first decade was a <strong>structured, deliberate climb</strong> through increasingly complex engineering environments — consumer appliances, automotive Tier 1, and global OEM programs across Belgium, Germany, and South Korea. Each move was chosen for the exposure it would add, not the title it would carry. Onsite delivery at Hyundai Motor Company in South Korea and client programs in Europe sharpened how I work within large, process-driven organisations. By the time that chapter closed, the engineering foundation was broad, the organisational muscle was strong, and the instinct for rigour was deeply set.</p>
+    </div>
+
+    <div class="phil-block">
+      <div class="phil-block-label">Act II &nbsp;·&nbsp; Learning the whole game</div>
+      <p>Running Design Leap Services added the dimension that engineering alone cannot teach. Product development, costing, vendor coordination, and direct sales running simultaneously made one thing <strong>permanently clear</strong> — top line and bottom line are equally unforgiving, and engineering decisions without commercial grounding are expensive opinions. That understanding has informed every leadership role since.</p>
+    </div>
+
+    <div class="phil-block">
+      <div class="phil-block-label">Act III &nbsp;·&nbsp; Deliberate cross-industry compounding</div>
+      <p>What followed was a <strong>conscious strategy</strong>: maximise the volume and variety of engineering work, compress the feedback loop, and let industries cross-pollinate. The belief was simple — repetition is the engine of expertise, and repetition across varied contexts builds something that depth in one sector cannot. Prosthetics, EV charging infrastructure, laboratory equipment, welding systems, consumer appliances — each engagement a different industry, each delivery cycle reinforcing the same core engineering instincts under new constraints. A DFM insight from automotive surfaces in a medical device build. Thermal analysis from consumer appliances reframes a laboratory instrument challenge. That breadth, built deliberately, now compounds on the foundation of the first decade.</p>
+    </div>
+
+    <div class="phil-block" style="border-color: var(--accent); background: var(--bg);">
+      <div class="phil-block-label">What comes next</div>
+      <p>What I am seeking now is the environment where that full body of work has <strong>genuine room to land</strong> — structured, growing, and built for scale.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sandip Patil<em>.</em>Portfolio &nbsp;—&nbsp; Industrial &amp; Product Design</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.ai-card, .phil-block').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

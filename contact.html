@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Sandip Patil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f6f5f1;
+      --bg2: #ffffff;
+      --text: #191919;
+      --text-muted: #6a6a6a;
+      --accent: #b8935a;
+      --border: #e2dfd8;
+      --num-color: #ecdec8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,245,241,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo em { font-style: italic; color: var(--accent); }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-left: 32px;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+	
+		nav a.active {
+  color: var(--accent);
+  position: relative;
+}
+
+nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+}
+
+    /* HERO */
+    .hero {
+      padding: 100px 60px 80px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 4px 10px;
+      border-radius: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.6rem);
+      font-weight: 300;
+      line-height: 1.08;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-right {
+      padding-bottom: 8px;
+    }
+
+    .hero-intro {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 32px;
+    }
+
+    .hero-intro strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-num em { font-style: italic; color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CAREER TIMELINE */
+    .section {
+      padding: 80px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--num-color);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+
+
+    /* EXPERTISE GRID */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .exp-cell {
+      background: var(--bg);
+      padding: 40px 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+    }
+    .exp-cell:hover { background: var(--bg2); }
+    .exp-cell.visible { opacity: 1; transform: translateY(0); }
+
+    .exp-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--num-color);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .exp-desc {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* TOOLS */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px 48px;
+    }
+
+    .tool-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .tool-group-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tool-item {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      padding: 2px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-item::before {
+      content: '';
+      display: inline-block;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      padding: 100px 60px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .phil-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      line-height: 1.2;
+      position: sticky;
+      top: 100px;
+    }
+    .phil-label em { font-style: italic; color: var(--accent); }
+
+    .phil-content { display: flex; flex-direction: column; gap: 32px; }
+
+    .phil-block {
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .phil-block.visible { opacity: 1; transform: translateX(0); }
+
+    .phil-block-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .phil-block p {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .phil-block p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* CONTACT STRIP */
+    .contact-strip {
+      padding: 80px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .contact-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .contact-left h2 em { font-style: italic; color: var(--accent); }
+
+    .contact-left p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .contact-link {
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link::after {
+      content: '→';
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+    }
+    .contact-link:hover::after { transform: translateX(4px); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+    .footer-name em { font-style: italic; color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      header { padding: 0 24px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 48px;
+        gap: 40px;
+      }
+
+      .section { padding: 60px 24px; }
+
+      .timeline::before { left: 0; display: none; }
+      .tl-item { grid-template-columns: 1fr; gap: 12px; }
+      .tl-left { align-items: flex-start; }
+      .tl-left::after { display: none; }
+      .tl-right { padding-left: 0; }
+
+      .expertise-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+      .philosophy {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+        gap: 40px;
+      }
+      .phil-label { position: static; }
+
+      .contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 60px 24px;
+      }
+      .contact-links { align-items: flex-start; }
+
+      footer { flex-direction: column; gap: 12px; padding: 28px 24px; }
+    }
+	
+	.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* default: mobile → 1 x 4 */
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  width: 100%;
+}
+.contact-card {
+  background: var(--bg);
+  padding: 28px 32px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;   /* forces 2-line layout */
+  gap: 6px;
+  align-items: flex-start;
+  transition: background 0.2s ease;
+}
+
+.contact-card:hover {
+  background: var(--bg2);
+}
+
+.contact-label {
+  display: block;           /* forces new line */
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.contact-value {
+  display: block;           /* forces new line */
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Tablet → 2 x 2 */
+@media (min-width: 600px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop → 4 x 1 */
+@media (min-width: 1100px) {
+  .contact-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="portfolio_1.html">Sandip Patil<em>.</em>Portfolio</a>
+  <nav>
+    <a href="portfolio_1.html">Work</a>
+	<a href="about.html">About</a> 
+    <a href="#" class="active">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Industrial &amp; Product Design</div>
+    <h1>Let’s start<br><em>a conversation</em></h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-intro">
+      I’m open to opportunities where my experience across engineering, product development, and cross-industry execution can contribute to building scalable, well-engineered outcomes.
+    </p>
+
+  </div>
+</section>
+
+
+
+<!-- CONTACT -->
+<section class="contact-strip">
+  
+<div class="contact-grid">
+
+  <a class="contact-card" href="mailto:sandippatil0611@gmail.com">
+    <span class="contact-label">Email</span>
+    <span class="contact-value">sandippatil0611@gmail.com</span>
+  </a>
+
+  <a class="contact-card" href="tel:+919876543210">
+    <span class="contact-label">Mobile</span>
+    <span class="contact-value">+91 93723 30383</span>
+  </a>
+
+  <a class="contact-card" href="https://www.linkedin.com/in/sandip-patil-70510798/" target="_blank">
+    <span class="contact-label">LinkedIn</span>
+    <span class="contact-value">View Profile</span>
+  </a>
+
+  <a class="contact-card" href="Sandip_Patil_Resume.pdf" target="_blank">
+    <span class="contact-label">Bio Data</span>
+    <span class="contact-value">Download Resume</span>
+  </a>
+
+</div>
+  
+   
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sandip Patil<em>.</em>Portfolio &nbsp;—&nbsp; Industrial &amp; Product Design</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.exp-cell, .phil-block').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
