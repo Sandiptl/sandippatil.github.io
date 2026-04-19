@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f6f5f1;
+      --bg2: #ffffff;
+      --text: #191919;
+      --text-muted: #6a6a6a;
+      --accent: #b8935a;
+      --border: #e2dfd8;
+      --num-color: #ecdec8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246,245,241,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+    .logo em { font-style: italic; color: var(--accent); }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-left: 32px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+	
+	nav a.active {
+  color: var(--accent);
+  position: relative;
+}
+
+nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+}
+
+    /* HERO */
+    .hero {
+      padding: 100px 60px 80px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-left h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      max-width: 640px;
+    }
+    .hero-left h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-right {
+      max-width: 280px;
+      flex-shrink: 0;
+    }
+
+    .hero-right p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 4px 10px;
+      border-radius: 1px;
+      margin-bottom: 16px;
+    }
+
+    /* PROJECTS */
+    .projects { padding: 0 0 120px; }
+
+    /* SINGLE PROJECT ROW */
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .project.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* odd: image left, info right */
+    .project.odd .proj-img  { order: 1; }
+    .project.odd .proj-info { order: 2; border-left: 1px solid var(--border); }
+
+    /* even: info left, image right */
+    .project.even .proj-info { order: 1; border-right: 1px solid var(--border); }
+    .project.even .proj-img  { order: 2; }
+
+    /* IMAGE PANEL */
+    .proj-img {
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proj-img img {
+      max-width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+    }
+
+    .project:hover .proj-img img {
+      transform: scale(1.04) translateY(-4px);
+    }
+
+    /* INFO PANEL */
+    .proj-info {
+      padding: 64px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .proj-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--num-color);
+      line-height: 1;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+
+    .proj-description {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 420px;
+    }
+
+    .proj-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .meta-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      min-width: 76px;
+    }
+
+    .meta-value {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+    .footer-name em { font-style: italic; color: var(--accent); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      header { padding: 0 24px; }
+      .hero { flex-direction: column; padding: 60px 24px 48px; }
+      .hero-right { max-width: 100%; }
+
+      .project { grid-template-columns: 1fr; min-height: auto; }
+      .project.odd .proj-img,
+      .project.even .proj-img  { order: 1; }
+      .project.odd .proj-info,
+      .project.even .proj-info { order: 2; border-left: none; border-right: none; border-top: 1px solid var(--border); }
+
+      .proj-info { padding: 40px 24px; }
+      .proj-img  { padding: 40px 24px; min-height: 300px; }
+      footer { flex-direction: column; gap: 12px; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Sandip Patil<em>.</em>Portfolio</div>
+  <nav>
+    <a href="#" class="active">Work</a>
+   <a href="about.html">About</a>  
+<a href="contact.html">Contact</a>    
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Industrial &amp; Product Design</div>
+    <h1>Work that speaks<br><em>for itself.</em></h1>
+  </div>
+  <div class="hero-right">
+    <p>A curated record of commercial projects — from precision instruments to consumer appliances — delivered across diverse industries and client partnerships.</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects">
+
+  <!-- 01 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="Powerica.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">01</div>
+      <div class="proj-description">Acoustic-enclosure for diesel generator with Cummins engine, advanced AVR, and AMF panel — designed for standby and prime power in commercial and industrial installations.
+	  Learnt about Sheetmetal mfg. processes like CNC Punching, Bending and laser cutting" </div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">CS Components</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Cummins</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">02</div>
+      <div class="proj-description">Frost-free double-door refrigerator with embossed floral finish, energy-efficient compressor, and separate freezer compartment for domestic use.
+	  The process was a master class in disciplined creativity — beginning with real user behaviour-human-centred research 
+	  that grounded every decision in , progressing through structured ideation, sketch-based idea selection, cost-benefit analysis, photorealistic rendering, and concept selection — 1:1 mock-up development before translating vision into 
+reality, engineering design, validation through DFM and pilot production.</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Future Factory</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Godrej Aplliances</span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src="Eon_FrostFree.png" alt="Project 02"></div>
+  </div>
+
+    <!-- 03 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="Clamp_Meter.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">03</div>
+      <div class="proj-description">AC/DC clamp meter with 1000A capacity, LCD display with backlight, and multi-function measurement capabilities including voltage, resistance, and continuity.
+Configurable assembly level model parametrically controlled based on overall Length, Width and Depth dimensions
+Mechanism design using Creo Mechanism module involving cam and spring design</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Tata Elxsi</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Rishabh Instruments</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">04</div>
+      <div class="proj-description">Analog speedometer cluster for Hyundai Eon hatchback, with integrated fuel/temperature gauges, odometer, and warning lamp array for city-segment vehicle dashboard design.
+	  Collabrative onsite Engineering Design support at HMC, South Korea</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Visteon Engineering Center, India</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Hyundai Motor Company</span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src=" Eon_InstrumentCluster.png" alt="Project 02"></div>
+  </div>
+  
+   <!-- 05 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="ChampT400.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">05</div>
+      <div class="proj-description">Heavy-duty 400A transformer-based arc welder with digital ammeter, dual voltage output, and India Design Mark — built for continuous duty cycle in heavy fabrication environments.
+	  Engineered front and rear assemblies with shared geometry — enabling both components to be produced from a single mold tool, reducing tooling investment by 70%.</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Design Leap Services (Own Company)</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Ador Welding</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">06</div>
+      <div class="proj-description">Champ 200-A compact, portable welding machine for light to medium-duty jobs.</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Design Leap Services (Own Company)</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Ador Welding</span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src="Champ 200.png" alt="Project 02"></div>
+  </div>
+
+    <!-- 07 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="Prep Set.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">07</div>
+      <div class="proj-description">Multi-piece kitchen prep set including colanders, mixing bowls, grater, citrus juicer, measuring jug, and cutting board — designed for ergonomic home food preparation.
+	  </div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Design Leap Services (Own Company)</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">All Time Plastics</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">08</div>
+      <div class="proj-description">Design patented no-tie lace replacement system for formal and casual shoes, targeting busy professionals who need quick-on convenience without compromising on style.
+	  Developed a strong understanding of end-to-end business functions, including product development, customer engagement, cost management, and commercialization, enabling more informed and strategic engineering decisions </div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Design Leap Services (Own Company)</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">11.11 (Sister Company) </span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src="KnottFree.jpg" alt="Project 02"></div>
+  </div>
+  
+     <!-- 09 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="Prosthetic Hand.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">09</div>
+      <div class="proj-description">A prosthetic hand designed ground-up for the Indian user — anthropometrically calibrated. 
+	 	  Four functional grip configurations are activated through a multi-channel EMG sensing module and micro-electrode array, 
+	  with no app dependency or manual reconfiguration. Soft fingertip inserts improve real-world grip compliance. 
+	Used Creo to do kinematics and kinetics analysis to calculate the load carrying capacity.</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Design Life</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">DeeDee Labs</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">10</div>
+      <div class="proj-description">60–120 kW dual-gun DC fast charger with NFC-based authentication, touchscreen interface, and CCS/CHAdeMO compatibility for public EV charging networks.</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Design Life</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Ador Digatronics</span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src="Classic.png" alt="Project 02"></div>
+  </div>
+
+    <!-- 11 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="Rice Cooker.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">11</div>
+      <div class="proj-description">Engineering design of evaporative cooler, electric rice cooker and AI based micro bial colony counter. Under launch process</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Futuring Design</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Hawkins, Bajaj Electrical and AiraMatrix( Sun Pharma Spun off) </span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">12</div>
+      <div class="proj-description">Portable battery-operated MIG/MMA inverter welder on wheel frame, dual-battery configuration, suitable for field and off-grid welding operations.
+	  Tolerance stack up analysis, BOM Management and prototype development to smoothout handover to Client's Engineering team</div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Tarbej Design</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Ador Welding</span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src="rhino.png" alt="Project 02"></div>
+  </div>
+  
+      <!-- 13 image LEFT -->
+  <div class="project odd">
+    <div class="proj-img"><img src="Tall Boy.png" alt="Project 01"></div>
+    <div class="proj-info">
+      <div class="proj-number">13</div>
+      <div class="proj-description">180–240 kW ultra-fast dual-gun EV charger with high-power liquid-cooled cables, built-in display, and modular architecture for highway and fleet charging hubs.
+	  BOM Management and prototype development to smoothout handover to Client's Engineering team </div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Tarbej Design</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value">Ador Welding</span></div>
+      </div>
+    </div>
+  </div>
+  
+    <!-- 14 image RIGHT -->
+  <div class="project even">
+    <div class="proj-info">
+      <div class="proj-number">14</div>
+      <div class="proj-description">Dual-zone cryogenic biological sample storage unit with circular chart recorder, digital controller, and transparent inner door for ultra-low temperature preservation of biological specimens.
+	  Engineering calculation of heat loads and selection of components of refrigeration systems </div>
+      <div class="proj-meta">
+        <div class="meta-row"><span class="meta-label">Employer</span><span class="meta-value">Remi Elektrotechnik</span></div>
+        <div class="meta-row"><span class="meta-label">Client</span><span class="meta-value"> -- </span></div>
+      </div>
+    </div>
+    <div class="proj-img"><img src="Cryo Pres Duo Store.png" alt="Project 02"></div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Sandip Patil<em>.</em>Portfolio &nbsp;—&nbsp; Industrial &amp; Product Design</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
